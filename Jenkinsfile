@@ -1,3 +1,4 @@
+/* groovylint-disable-next-line NglParseError */
 pipeline {
     agent any 
         // docker {
@@ -9,7 +10,6 @@ pipeline {
         //jdk 'jdk-11'
     }
 
-    
     stages {
         stage('Build') {
             steps {
@@ -37,4 +37,11 @@ pipeline {
             archiveArtifacts artifacts: '**/*.jar', fingerprint: true
         }
     }
+        stage ('Upload to Google Storage') {
+            steps {
+                script {
+                    gsutil cp '**/*.jar' gs://store_91
+                }
+            }
+        }
 }

@@ -19,7 +19,7 @@ pipeline {
 
         stage ('Upload to google bucker') {
             steps {
-                googleStorageUpload bucket: 'gs://store_91', credentialsId: 'floow-clusters', pattern: '/target/*.jar'
+                googleStorageUpload bucket: 'gs://store_91', credentialsId: 'floow-clusters', pattern: '**/*.jar'
             }
         }
 
